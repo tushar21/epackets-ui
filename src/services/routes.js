@@ -4,21 +4,20 @@ import Home from '../components/home';
 import AboutUs from '../components/about';
 import Login from '../components/login';
 import UserSignup from '../components/signup';
+import Header from '../components/layout/header';
+import Footer from '../components/layout/footer';
 
 export default ()=>{
     return (
         <Router>
-            <div style={style}>
+            <div>
+            <Header/>
                 <Route exact path="/" component={Home} />
                 <Route path="/about" component={AboutUs} />
                 <Route path="/login" component={Login}/>
                 <Route path="/signup" component={UserSignup}/>
+            <Footer/>
             </div>
-        </Router>        
+        </Router>
     )
-}
-
-
-const style = {
-    padding: '10px'
 }

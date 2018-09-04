@@ -1,0 +1,12 @@
+.searchBar{
+    width : 100%;
+}
+
+.fullHeight{
+    height: 500px;
+    padding-top: 100px;
+}
+
+.link{
+    text-decoration: none;
+}

@@ -1,16 +1,17 @@
-//import CONFIG from '../utils/configs';
+import CONFIG from './config';
 export default {
-  get: (url)=>{
-
-      /* return fetch(CONFIG.API_URL + url, {
-        method: "GET"
-      }); */
+  get: (url, elastic = false)=>{
+    let endpoint = elastic ? CONFIG.ELASTIC_URL : CONFIG.API_URL;
+    return fetch(endpoint + url, {
+      method: "GET"
+    });
   },
-  post: (url, payload)=>{
+  post: (url, elastic= false, payload)=>{
+    let endpoint = elastic ? CONFIG.ELASTIC_URL : CONFIG.API_URL;
     return "post data";
-      /* return fetch(url, {
+      return fetch(endpoint + url, {
         method: "GET",
         body: JSON.stringify(payload)
-      }); */
+      });
   }
 }
