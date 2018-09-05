@@ -1,17 +1,30 @@
 import CONFIG from './config';
-export default {
+import axios from 'axios'
+/* export default {
   get: (url, elastic = false)=>{
     let endpoint = elastic ? CONFIG.ELASTIC_URL : CONFIG.API_URL;
     return fetch(endpoint + url, {
       method: "GET"
     });
   },
-  post: (url, elastic= false, payload)=>{
+  post: (url, payload, elastic= false)=>{
+    
     let endpoint = elastic ? CONFIG.ELASTIC_URL : CONFIG.API_URL;
-    return "post data";
       return fetch(endpoint + url, {
-        method: "GET",
+        method: "post",
+        headers: {
+          'Content-Type':'application/json'
+        },
         body: JSON.stringify(payload)
       });
+  }
+} */
+
+export default {
+ 
+  post : function(url, payload, elastic){
+    console.log(payload, "payload");
+    let endpoint = elastic ? CONFIG.ELASTIC_URL : CONFIG.API_URL;
+    return axios.post(endpoint + url, payload);
   }
 }

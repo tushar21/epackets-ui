@@ -10,7 +10,7 @@ export default class Header extends Component{
     render(){
         return (
             <div style={{flexGrow: 1}}>
-                <AppBar position="static" color={'transparent'}>
+                <AppBar position="static" color={"inherit"}>
                     <Toolbar> 
                     <Grid container>
                         <Grid item md={2}>
@@ -19,7 +19,7 @@ export default class Header extends Component{
                         <Grid item md={6}>
                             &nbsp; 
                         </Grid>
-                        <Grid item md={4} justify={"center"}>
+                        <Grid item md={4} >
                         <Link to="/login">
                         <Button variant="contained" color="primary">
                             Login
