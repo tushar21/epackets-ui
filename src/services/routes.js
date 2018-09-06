@@ -6,6 +6,7 @@ import Login from '../components/login';
 import UserSignup from '../components/signup';
 import Header from '../components/layout/header';
 import Footer from '../components/layout/footer';
+import SearchPage from '../components/search';
 
 export default ()=>{
     return (
@@ -16,6 +17,7 @@ export default ()=>{
                 <Route path="/about" component={AboutUs} />
                 <Route path="/login" component={Login}/>
                 <Route path="/signup" component={UserSignup}/>
+                <Route path="/search" component={SearchPage}/>
             <Footer/>
             </div>
         </Router>

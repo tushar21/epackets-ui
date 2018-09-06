@@ -1,58 +1,31 @@
 import React, {Component} from 'react';
-import {TextField, Grid, Select, MenuItem, Button} from '@material-ui/core';
-import ElastcicSearch from '../../services/elasticsearch';
+import {Grid} from '@material-ui/core';
+import {DecodeQuery} from '../../utils/helper';
 import './search.css';
-import {Link} from 'react-router-dom';
-export default class SearchBar extends Component{
-    state = {
-        query: null,
-        operation : 'AND',
-        operations: ["Add"]
-    };
 
-    handleChange = name => event => {
-        console.log("Search text changed");
-        this.setState({
-            [name]: event.target.value,
-        });
-    };
+export default class SearchPage extends Component{
 
-    addOperationToQuery = (event)=> {
-        this.setState({
-            operation: event.target.value,
-            query: this.state.query + " " + event.target.value 
-        });
+    constructor(props){
+        super();
+        console.log(props, "props in search page");
+        this.state = {
+            q : DecodeQuery(props.location.search)
+        }
     }
-    
+
     render(){
-        return (<div className="fullHeight">
-            <Grid container md={12} alignItems="flex-end">
-                <Grid item md={8}>
-                    <TextField className={'searchBar'}
-                    id="query"
-                    label="Search Your Query Here" 
-                    value={this.state.query}
-                    onChange={this.handleChange('query')}
-                    />
+        return (
+            <div>
+                <Grid container alignItems="stretch" justify="center">
+                    <Grid item md={4} className="sidebar">
+                        this is sidebar
+                    </Grid>
+                    <Grid item md={8}>
+                        this is content  {this.props.location.search}
+                    </Grid>
                 </Grid>
-                <Grid item md={2}>
-                <Select
-                    value={this.state.operation}
-                    onChange={this.addOperationToQuery}             
-                >
-                    <MenuItem value=""><em>None</em></MenuItem>
-                    <MenuItem value={'AND'}>AND</MenuItem>
-                    <MenuItem value={'OR'}>OR</MenuItem>
-                    <MenuItem value={'NOT'}>NOT</MenuItem>
-                </Select>
-                </Grid>
-                <Grid item md={2}>
-                <Button variant="outlined">
-                    <Link to="/about" className="link">Search</Link>
-                </Button>
-                </Grid>
-            </Grid>
             </div>
         )
     }
+
 }

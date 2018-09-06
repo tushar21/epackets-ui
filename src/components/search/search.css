@@ -1,12 +1,4 @@
-.searchBar{
-    width : 100%;
+.sidebar{
+    background-color: #ccc;
 }
 
-.fullHeight{
-    height: 500px;
-    padding-top: 100px;
-}
-
-.link{
-    text-decoration: none;
-}

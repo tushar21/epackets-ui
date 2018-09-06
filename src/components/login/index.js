@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Paper, Grid, Button, FormControl, Input, InputLabel, Typography} from '@material-ui/core';
 import './login.css';
 import HTTP from '../../services/http';
-//import { browserHistory } from 'react-router';
 
 export default class UserLogin extends Component{
     
@@ -29,7 +28,7 @@ export default class UserLogin extends Component{
         .then((isLogin)=>{
             if(isLogin && isLogin.data && isLogin.data._id) {
                 localStorage.setItem('LOGGEDIN_USER', JSON.stringify({_id : isLogin.data._id, email : isLogin.data.email, first_name: isLogin.data.first_name, last_name: isLogin.data.last_name}));
-                this.props.history.push('/about');
+                this.props.history.push('/');
             }
         })
         .catch((error)=> {

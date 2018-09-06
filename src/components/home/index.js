@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SearchBar from '../search';
+import SearchBar from '../search-form';
 import {Link} from 'react-router-dom';
 import {Grid} from '@material-ui/core';
 
