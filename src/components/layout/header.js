@@ -31,7 +31,7 @@ export default class Header extends Component{
                             <Grid item md={6}>
                                 {/* <SearchForm/> */}
                             </Grid>
-                            <Grid item md={3} justify="right">
+                            <Grid item md={3}>
                                 {header}
                             </Grid> 
                         </Grid>                        

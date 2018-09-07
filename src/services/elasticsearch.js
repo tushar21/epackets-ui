@@ -5,6 +5,6 @@ export default {
 }
 
 async function search(query = null){
-    let response = await HTTP.get('_search?q=${query}');
+    let response = await HTTP.get('_search?q='+query, true);
     return response;
 }
