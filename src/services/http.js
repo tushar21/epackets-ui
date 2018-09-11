@@ -24,15 +24,15 @@ export default {
 
   get: (url, elastic = false)=>{
     let endpoint = elastic ? CONFIG.ELASTIC_URL : CONFIG.API_URL;
-    let config = elastic? {auth: {username : 'elastic', password: '70Yeprsl1Trx3OCzZ33Yv4mL'}}: {};
-    console.log(endpoint, "endpoint in http service")
+    let config = elastic? {auth: {username : CONFIG.ELASTIC_USERNAME, password: CONFIG.ELASTIC_PASSWORD}}: {};
     return axios.get(endpoint + url, config);
   }, 
  
-  post : function(url, payload, elastic){
+  post : function(url, payload, elastic = false){
     console.log(payload, "payload");
     let endpoint = elastic ? CONFIG.ELASTIC_URL : CONFIG.API_URL;
+    let config = elastic? {auth: {username : CONFIG.ELASTIC_USERNAME, password: CONFIG.ELASTIC_PASSWORD}}: {};
     
-    return axios.post(endpoint + url, payload);
+    return axios.post(endpoint + url, payload, config);
   }
 }

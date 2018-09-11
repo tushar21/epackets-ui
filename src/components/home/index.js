@@ -12,7 +12,7 @@ export default class Home extends Component{
         return (
                 <Grid container direction="column" alignItems="center" justify="center"  style={style}>
                     <Grid item>
-                        <SearchBar/>
+                        <SearchBar placement="home"/>
                     </Grid>
                 </Grid>
         )

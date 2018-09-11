@@ -29,7 +29,7 @@ export default class Header extends Component{
                                 <img src={logo} width={100} alt={"sdsdsa"}/>
                             </Grid>
                             <Grid item md={6}>
-                                {/* <SearchForm/> */}
+                                <SearchForm placement="header"/>
                             </Grid>
                             <Grid item md={3}>
                                 {header}

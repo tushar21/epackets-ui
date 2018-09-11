@@ -20,25 +20,20 @@ export default class SearchPage extends Component{
         Elastic.search(q)
         .then((data)=>{
             let foundCases = data.data;
-            console.log(data, "data.hits.hits");
             if(foundCases.hits && foundCases.hits.hits && foundCases.hits.hits.length){
-                
                 this.setState({result : foundCases.hits.hits, total: foundCases.hits.total});
-            }
-            else{
-                this.setState({result: ["No results found"]});
-            }
+            }           
         })
     }
 
     render(){
-        let ResultList = null;
+        let ResultList = "No results found";
 
         if(this.state.result && this.state.result.length){
             ResultList = this.state.result.map((result,idx)=>{
-                return <ListItem key={idx}>{ (result._source && result._source.Carrier) ? result._source.Carrier : ''}xsdsadasd</ListItem>
+                return <div><ListItem key={idx}><Typography variant="title">{(result._source && result._source.title) ? result._source.title : ''}</Typography></ListItem><ListItem key={idx+'desc'}><Typography  paragraph={true}>{(result._source && result._source.description) ? result._source.description : ''}</Typography></ListItem></div>
             })
-        }
+        } 
                   
         return (
                 <Grid container alignItems="stretch" justify="center" style={style}>
@@ -46,7 +41,7 @@ export default class SearchPage extends Component{
                         this is sidebar
                     </Grid>
                     <Grid item md={9}>
-                    <Typography variant="headline" gutterBottom align="left">
+                    <Typography variant="headline" gutterBottom align="left" className={'searchHeading'}>
                         {this.state.total} total cases found 
                     </Typography>
                         <List>

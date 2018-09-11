@@ -6,11 +6,16 @@ import {Link} from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 
 export default class SearchBar extends Component{
-    state = {
-        query: '',
-        operation : '',
-        operations: ["Add"]
-    };
+
+    constructor(props){
+        super();
+        console.log(props, "props in search component");
+        this.state = {
+            query: '',
+            operation : '',
+            operations: ["Add"]
+        };
+    }    
 
     handleChange = name => event => {
         this.setState({
@@ -25,7 +30,7 @@ export default class SearchBar extends Component{
     }
     
     render(){
-        return (<div className="fullHeight">
+        return (<div className={this.props.placement}>
             <Grid container alignItems="stretch" justify="center" spacing={16} className="searchOutline">
                 <Grid item md={8}>
                     <input type="text" className={'searchInput'}

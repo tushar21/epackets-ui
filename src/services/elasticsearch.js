@@ -5,6 +5,17 @@ export default {
 }
 
 async function search(query = null){
-    let response = await HTTP.get('_search?q='+query, true);
+    query  = query.replace('AND', '+');
+    query  = query.replace('OR', '|');
+    let payload = {
+        "query": {
+          "simple_query_string" : {
+              "query": query,
+              "fields": ["description", "title"]
+          }
+        }
+    }      
+    console.log(payload, "payload");
+    let response = await HTTP.post('_search?', payload, true);
     return response;
 }
