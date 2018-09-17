@@ -5,7 +5,7 @@ import {Grid} from '@material-ui/core';
 import './home.css';
  
 const style = {
-    'min-height': window.innerHeight
+    'minHeight': (window.innerHeight - 80)
 }
 export default class Home extends Component{ 
     render(){
