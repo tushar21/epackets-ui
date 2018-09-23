@@ -1,8 +1,12 @@
 .sidebar{
-    background-color: #ccc;
+    border-right: solid 1px #ccc;
 }
 
 .searchHeading{
     padding-left: 20px;
     margin-top: 20px;
+}
+
+.listTitle{
+    cursor: pointer;
 }
