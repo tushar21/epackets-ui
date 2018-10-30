@@ -2,3 +2,49 @@
     min-height:100% !important;
     position: relative !important;
 }
+
+.homeBg{
+    background-image: url("../../assets/bg1.jpg") ;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    z-index: 1;
+    color: #fff;
+}
+
+.homeBg:before{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color: #000000;
+    opacity: 0.45;
+    z-index: -1;
+}
+
+
+.rowGrid{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.paddingLarge{
+    padding-bottom: 80px;
+    padding-top: 80px;
+}
+
+.heading3{
+    font-size: 35px;
+    display: inline-block !important;
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.greyGrid{background-color: #eeecec}
+
+.headingBorder{
+    border-bottom: solid 2px #000000;
+}

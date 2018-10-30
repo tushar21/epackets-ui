@@ -4,9 +4,13 @@
 
 .sidebarHeading{
     padding-left: 20px;
-    margin-top: 20px;
 }
 
 .inputFilterText{
     padding-bottom: 20px;
+}
+
+.sidebar{
+    padding-bottom: 50px;
+    padding-top: 20px;
 }

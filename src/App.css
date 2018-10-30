@@ -28,5 +28,19 @@
 }
 
 body{
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif !important;  
+}
+a{
+  color : #2196f3;
+}
+
+
+.label-success{
+  padding: 10px;
+  background-color: #47d247;
+}
+
+
+.err-text{
+  color : red;
 }

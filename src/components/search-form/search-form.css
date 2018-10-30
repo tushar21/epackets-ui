@@ -54,6 +54,9 @@
 .borderRight{
     border-right: solid 1px #ccc;
     border-left: solid 1px #ccc;
+    overflow: hidden;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .selectRoot{
@@ -62,7 +65,8 @@
 
 .home .searchResults{
     position: absolute;
-    top: 78px;
+    top: 69px;
+    background-color: #ffffff;
 }
 
 .header .searchResults{
@@ -74,4 +78,27 @@
 }
 .caseAutocomplete .listItem:hover{
     background-color: #ccc;
+}
+
+.optionsList{
+    background-color: #ffffff;
+    color : #000000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.ArrowDropIcon{
+    color : #000000;
+    font-size: 40px !important;
+    cursor: pointer;
+}
+
+.searchIcon{
+    color : #000000;
+    font-size: 25px !important;
+    cursor: pointer; 
+}
+
+.cursor{
+    cursor: pointer;
 }

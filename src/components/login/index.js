@@ -84,5 +84,6 @@ export default class UserLogin extends Component{
 
 
 const style = {
-    paddingTop : '10px'
+    'paddingTop' : '10px',
+    'minHeight': (window.innerHeight - 80)
 }

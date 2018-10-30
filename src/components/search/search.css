@@ -1,5 +1,9 @@
 .sidebar{
-    border-right: solid 1px #ccc;
+    /* border-right: solid 1px #ccc; */
+    -webkit-box-shadow: 13px 13px 17px -7px rgba(191,184,191,1);
+    -moz-box-shadow: 13px 13px 17px -7px rgba(191,184,191,1);
+    box-shadow: 13px 13px 17px -7px rgba(191,184,191,1);
+
 }
 
 .searchHeading{
@@ -9,4 +13,26 @@
 
 .listTitle{
     cursor: pointer;
+    color: rgb(33, 150, 243) !important;
+    font-style: italic;    
+}
+
+.caseDesc{
+    padding-top: 0px !important;    
+}
+
+.caseExcerpt{
+    overflow: hidden;
+    max-height: 100px;
+}
+
+.caseTitle{
+    padding-bottom: 16px !important;
+}
+
+.caseResultDetail{
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f2f2f2;
 }

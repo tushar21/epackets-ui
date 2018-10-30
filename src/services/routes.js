@@ -4,22 +4,20 @@ import Home from '../components/home';
 import AboutUs from '../components/about';
 import Login from '../components/login';
 import UserSignup from '../components/signup';
-import Header from '../components/layout/header';
-import Footer from '../components/layout/footer';
 import SearchPage from '../components/search';
 import CaseDetails from '../components/casedetails';
-export default ()=>{
+import { createBrowserHistory as createHistory } from "history";
+
+export default ()=>{    
     return (
         <Router>
-            <div>
-            <Header/>
+            <div>            
                 <Route exact path="/" component={Home} />
                 <Route path="/about" component={AboutUs} />
                 <Route path="/login" component={Login}/>
                 <Route path="/signup" component={UserSignup}/>
                 <Route path="/search" component={SearchPage}/>
-                <Route path="/case/:id" component={CaseDetails}/>
-            <Footer/>
+                <Route path="/case/:id" component={CaseDetails}/>            
             </div>
         </Router>
     )

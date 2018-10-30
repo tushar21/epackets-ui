@@ -2,17 +2,16 @@ import HTTP from './http';
 
 export default {
     search : search,
-    details : details
+    details : details,
+    count : count
 }
-
-
 
 async function details(id, type){
     let response = await HTTP.get(type + '/type/'+id, true);
     return response;
 }
 
-async function search(config= {}){
+async function count(config = {}){
     config.q = config.q.replace('AND', '+');
     config.q = config.q.replace('OR', '|');
 
@@ -31,13 +30,56 @@ async function search(config= {}){
         }
       }];
 
-    let filters = ['court', "appelant", "opponent", "lawyer", "judge"];
+    let filters = ['court', "appelant", "opponent", "lawyer", "judge", "category"];
 
     filters.forEach((filterVal)=>{
         if(config[filterVal] && config[filterVal] != ''){
             mustQry.push({
                 "term": {
-                  [filterVal]: config[filterVal]
+                  [filterVal]: config[filterVal].toLowerCase()
+                }
+            });
+        }
+    })    
+
+    let payload = {        
+        "query": {
+            "bool": {
+            "must": mustQry
+            }
+        }
+    }
+
+    let response = await HTTP.post(options.index + '/_count?', payload, true);
+    return response;
+}
+
+async function search(config= {}){
+    config.q = config.q.replace('AND', '+');
+    config.q = config.q.replace('OR', '|') ;
+    config.per_page = config.per_page || 10;
+    let options = {
+        sortBy : config.sortBy || 'date',
+        order  : config.order || 'desc',
+        offset : (config.page && config.page > 1) ? (config.per_page * config.page) -1 : 0,
+        limit  : config.per_page,
+        index  : config.index || config.type || 'cases'        
+    }
+
+    let mustQry = [{
+        "simple_query_string": {
+          "query": config.q,
+          "fields":["description", "title"]
+        }
+    }];
+
+    let filters = ['court', "appelant", "opponent", "lawyer", "judge", "category"];
+
+    filters.forEach((filterVal)=>{
+        if(config[filterVal] && config[filterVal] != ''){
+            mustQry.push({
+                "term": {
+                  [filterVal]: config[filterVal].toLowerCase()
                 }
             });
         }
@@ -54,6 +96,6 @@ async function search(config= {}){
     }
 
     let response = await HTTP.post(options.index + '/_search?', payload, true);
-
     return response;
+
 }

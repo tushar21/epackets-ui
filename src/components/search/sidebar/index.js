@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, List, ListItem, Typography, Select, MenuItem, Divider, TextField, Button, IconButton } from '@material-ui/core';
+import {Grid, List, ListItem, Typography, Select, MenuItem, Divider, TextField, Button, IconButton, FormLabel } from '@material-ui/core';
 import './sidebar.css';
 import Elastic from '../../../services/elasticsearch';
 import {Serialize} from '../../../utils/helper';
@@ -8,12 +8,12 @@ import SearchIcon from '@material-ui/icons/Search';
 export default class SearchSidebar extends React.Component {
 
     constructor(props){
-        super();    
-        console.log(props.searchConfig, "props.searchConfig");
+        super();
         this.state = {
             searchConfig : {
                 ...props.searchConfig,
                 type : props.searchConfig.type || 'cases',
+                category : props.searchConfig.category || "",
                 startYear : props.searchConfig.startYear || '',
                 endYear : props.searchConfig.endYear || ''
             },
@@ -26,12 +26,10 @@ export default class SearchSidebar extends React.Component {
             judge: null,     
             category: null,
             court: null,
-            allTypes: ["cases", "statuses", "briefs"]
+            allTypes: ["cases", "statuses", "briefs"],
+            categories : ['CLC', 'PLD', 'PLC']
         }
-        //if(!this.state.searchConfig.type) this.state.searchConfig.type = 'cases';
-
     }
-
 
     handleClick(event, type){
         this.setState({
@@ -39,14 +37,11 @@ export default class SearchSidebar extends React.Component {
                 ...this.state.searchConfig,
                 type : type
             }
-        }, ()=>{
-            console.log(this.state.searchConfig, "this.state.searchConfig");
-            console.log(Serialize(this.state.searchConfig), "Testing");
+        }, ()=>{            
             let qryStr = '/search/?'+ Serialize(this.state.searchConfig);
             this.props.history.push(qryStr);
             window.location.reload();            
         })       
-       
     }    
     
     handleStateChange(e, yearType){
@@ -126,53 +121,68 @@ export default class SearchSidebar extends React.Component {
                     </Grid>     
                     <Grid item md={1}></Grid>               
                 </Grid>
-                
-
 
                 <Grid container>
                     <Grid item md={1}></Grid>
                     <Grid item md={10} className='inputFilterText'>
-                        <TextField                         
+                        <TextField 
                         label="Opponent"
                         defaultValue="" 
                         fullWidth   
-                        onChange={(e)=>{this.props.handleFilterChange(e, "opponent")}}          
+                        onChange={(e)=>{this.props.handleFilterChange(e, "opponent")}}  
                         />    
                     </Grid>
                     <Grid item md={1}></Grid>
                 </Grid>
                 <Divider />
 
+                <Grid container alignItems='center'>
+                    <Grid item md={1}></Grid>
+                    <Grid item md={3}>
+                        <FormLabel component="legend">Category</FormLabel>
+                    </Grid>
+                    <Grid item md={7} className='inputFilterText'>                        
+                        <Select 
+                            value={this.state.searchConfig.category} 
+                            onChange={(e)=>{this.handleStateChange(e, "category");this.props.handleFilterChange(e, "category")}}>
+                            <MenuItem value="">
+                                <em>All</em>
+                            </MenuItem>
+                            {this.state.categories.map((cat, idx)=>{
+                                return <MenuItem value={cat}>{cat}</MenuItem>
+                            })}
+                        </Select>  
+                    </Grid>
+                    <Grid item md={1}></Grid>
+                </Grid>
+                <Divider />               
+
                 <Grid container  alignContent="center" alignItems="center">
                     <Grid item md={1}></Grid>
                     <Grid item md={4} className='inputFilterText'>
                         <TextField  
-                        label="From Year"                       
+                        label="From Year" 
                         value={this.state.searchConfig.startYear} 
                         fullWidth 
                         onChange={(e)=>this.handleStateChange(e, "startYear")}
-                        /> 
-                    </Grid> 
-                    <Grid item md={1}>-</Grid>    
+                        />
+                    </Grid>
+                    <Grid item md={1}>-</Grid>
                     <Grid item md={4} className='inputFilterText'>
                         <TextField      
                         label="To Year"                   
                         value={this.state.searchConfig.endYear} 
                         fullWidth 
                         onChange={(e)=>this.handleStateChange(e, "endYear")}
-                        /> 
-                    </Grid>     
+                        />
+                    </Grid>
                     <Grid item md={1}>
                     <IconButton color="primary" onClick={(e)=>{this.props.handleYearFilterChange(this.state.searchConfig.startYear,this.state.searchConfig.endYear)}} >
                         <SearchIcon/>
-                    </IconButton>
-                        
+                    </IconButton>                        
                     </Grid> 
                     <Grid item md={1}></Grid>               
                 </Grid>
-
-
-
             </Grid>
         )
     }

@@ -1,0 +1,29 @@
+.transparentBg{
+    background-color: transparent !important;
+}
+
+.noShadow{
+    box-shadow: none !important;
+}
+
+
+.fixedHeader .headerLinks{
+    color: #ffffff;    
+}
+
+.staticHeader .headerLinks{
+    color: #2196f3;    
+}
+
+.headerLinks{
+    text-decoration: none;
+}
+
+.large-font a{
+    font-size: 20px;
+    margin: 0 20px;
+}
+
+.large-font a:hover{
+    opacity: 0.8;
+}
