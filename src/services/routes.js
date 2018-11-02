@@ -6,11 +6,11 @@ import Login from '../components/login';
 import UserSignup from '../components/signup';
 import SearchPage from '../components/search';
 import CaseDetails from '../components/casedetails';
-import { createBrowserHistory as createHistory } from "history";
+import { createBrowserHistory } from 'history'
 
 export default ()=>{    
     return (
-        <Router>
+        <Router history={createBrowserHistory()}>
             <div>            
                 <Route exact path="/" component={Home} />
                 <Route path="/about" component={AboutUs} />

@@ -11,6 +11,7 @@ import './header.css';
 export default class Header extends Component{
     constructor(props){
         super();
+        console.log(props, "props inside header.js")
     }
 
     render(){

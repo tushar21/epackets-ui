@@ -13,9 +13,12 @@ export default class HeaderLogin extends Component {
 
     constructor(props){
         super();
+        console.log(props,"this.props.user inside header login");
         this.state = {
             anchorEl: null,
+            shortName : props.user.first_name[0] + props.user.last_name[0]
         };
+        
     }
 
     handleClick = event => {
@@ -26,8 +29,13 @@ export default class HeaderLogin extends Component {
         this.setState({ anchorEl: null });
     };
 
+    doLogout(){
+        localStorage.removeItem('LOGGEDIN_USER');
+        this.props.history.push('/');
+    }
+
     render() {
-        const { anchorEl } = this.state;
+        const { anchorEl, shortName } = this.state;
 
         return (
             <div>
@@ -37,7 +45,7 @@ export default class HeaderLogin extends Component {
                     aria-haspopup="true"
                     onClick={this.handleClick} style={{color: '#FFFFFF'}}
                     >
-                    {this.props.user.first_name[0] + this.props.user.last_name[0]}
+                    {shortName}
                     </Button>
                 </Avatar>
                 <Menu id="simple-menu"
@@ -47,7 +55,7 @@ export default class HeaderLogin extends Component {
                     >
                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                     <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={this.doLogout}>Logout</MenuItem>
                 </Menu>
             </div>
         )

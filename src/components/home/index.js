@@ -12,17 +12,18 @@ import Footer from '../../components/layout/footer';
 const style = {
     'minHeight': (window.innerHeight - 80)
 }
-export default class Home extends Component{ 
+export default class Home extends Component{
 
     constructor(props){
         super(props);
+        console.log(props, "props inside home component");
     }
     
     render(){
-        return (<div><Header position={'fixed'}/><Grid container>
+        return (<div><Header position={'fixed'} history={this.props.history}/><Grid container>
                 <Grid container direction="column" alignItems="center" justify="center"  style={style} className={'homeBg'}>
                     <Grid item style={{marginBottom:20}}>
-                        <Typography variant="h1" gutterBottom className={'heading3'}>
+                        <Typography variant="display1" gutterBottom className={'heading3'}>
                             Search across millions of cases
                         </Typography>
                     </Grid>
@@ -35,7 +36,7 @@ export default class Home extends Component{
                       <img src={img1} width="400"/>
                     </Grid>
                     <Grid item md={6}>
-                    <Typography variant="h1" gutterBottom className={'heading3'}>
+                    <Typography variant="display1" gutterBottom className={'heading3'}>
                         Our Services
                     </Typography>
                     <p>
@@ -46,7 +47,7 @@ export default class Home extends Component{
 
                 <Grid container alignItems={'center'} justify={'center'} className={'rowGrid greyGrid'}>
                     <Grid item md={12} style={{marginBottom:30}}>
-                        <Typography variant="h1" gutterBottom className={'heading3'} gutterBottom={true}>
+                        <Typography variant="display1" gutterBottom className={'heading3'} gutterBottom={true}>
                             Our Clients
                         </Typography>
                     </Grid>

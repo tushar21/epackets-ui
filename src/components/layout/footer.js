@@ -6,7 +6,7 @@ import {List, ListItem} from '@material-ui/core';
 export default ()=>{
     return ( 
         <div className='footer'>
-        <Grid container direction="row" alignContent={'left'} justify="center" alignItems="flex-start">
+        <Grid container direction="row" alignContent={'center'} justify="center" alignItems="flex-start">
             <Grid item md={3} style={{marginTop: 20}}>
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

@@ -26,8 +26,9 @@ export default class UserLogin extends Component{
         event.preventDefault();
         HTTP.post('user/login', {email: this.state.email, password: this.state.password})
         .then((isLogin)=>{
-            if(isLogin && isLogin.data && isLogin.data._id) {
-                localStorage.setItem('LOGGEDIN_USER', JSON.stringify({_id : isLogin.data._id, email : isLogin.data.email, first_name: isLogin.data.first_name, last_name: isLogin.data.last_name}));
+            console.log(isLogin, "isLogin");
+            if(isLogin && isLogin.data.data && isLogin.data.data.id) {
+                localStorage.setItem('LOGGEDIN_USER', JSON.stringify(isLogin.data.data));
                 this.props.history.push('/');
             }
         })

@@ -110,7 +110,7 @@ export default class SearchBar extends Component{
                 </Grid>
             </Grid>
 
-            <Grid container alignItems={'search'} justify="center" style={{marginTop: 8}}>
+            <Grid container alignItems={'center'} justify="center" style={{marginTop: 8}}>
                 {this.state.showOptions ? <Grid item md={12} style={{padding:0}} className={'optionsList'} >                   
                     
                     <Table>                        
