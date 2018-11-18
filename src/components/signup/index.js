@@ -59,12 +59,8 @@ export default class UserSignup extends Component{
         });
     }
 
-    showSnack(msg=""){
+    showSnack(msg=''){
         this.setState({ opensnack: true, snackmessage: msg });
-    }
-
-    handleCloseSnackbar(){
-        
     }
 
     render(){
@@ -72,14 +68,13 @@ export default class UserSignup extends Component{
             <div>                
                 <Grid container style={style} direction="column" alignItems="center" >
                 <Snackbar
-                anchorOrigin={{ 'vertical':'top', 'horizontal': 'right' }}
-                open={this.state.opensnack}
-                onClose={this.handleCloseSnackbar}
-                ContentProps={{
-                    'aria-describedby': 'message-id',
-                }}
-                message={this.state.snackmessage}
-                />
+                    anchorOrigin={{ 'vertical':'top', 'horizontal': 'right' }}
+                    open={this.state.opensnack}
+                    ContentProps={{
+                        'aria-describedby': 'message-id'
+                    }}
+                    message={this.state.snackmessage}
+                    />
                     <Paper className="paper">   
                     <Grid item>                   
                         <Typography variant="headline">Signup</Typography>

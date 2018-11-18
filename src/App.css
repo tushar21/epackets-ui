@@ -44,3 +44,17 @@ a{
 .err-text{
   color : red;
 }
+
+
+.content{
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.h1{
+  font-size: 28px;
+}
+
+.bold{
+  font-weight: bold;
+}

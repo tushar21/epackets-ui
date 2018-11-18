@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import './header.css';
 export default class Header extends Component{
     constructor(props){
-        super();
+        super(props);
         console.log(props, "props inside header.js")
     }
 
@@ -29,28 +29,25 @@ export default class Header extends Component{
         let header = <DefaultHeader/>
 
         if(LOGGEDIN_USER){
-            header = <LoginHeader user={LOGGEDIN_USER}/>
+            header = <LoginHeader user={LOGGEDIN_USER} history={this.props.history}/>
         }
         
         return ( 
             <div style={{flexGrow: 1}}>
                 <AppBar position={position} color="default" className={classes}>
-                    <Toolbar className={'transparentBg'}> 
+                    <Toolbar className={'transparentBg'}>
                         <Grid container alignItems="center" justify="space-between">
                             <Grid item md={3}>
                                 <Link to={'/'}><img src={logo} width={100} alt={"logo"}/></Link>
                             </Grid>
                             <Grid item md={6} className={'large-font'}>
-                                <Link className={'headerLinks'} to={'/'}>About Us</Link>
-                                
-                                <Link className={'headerLinks'} to={'/'}>Contact Us</Link>
-
-                                <Link className={'headerLinks'} to={'/'}>Blog</Link>
+                                <Link className={'headerLinks'} to={'/about'}>About Us</Link>
+                                <Link className={'headerLinks'} to={'/contact-us'}>Contact Us</Link>
                             </Grid>
                             <Grid item md={3}>
                                 {header}
-                            </Grid> 
-                        </Grid>                        
+                            </Grid>
+                        </Grid>
                     </Toolbar>
                 </AppBar>                         
             </div>

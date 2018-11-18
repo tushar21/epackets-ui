@@ -7,6 +7,9 @@ import SearchSidebar from '../search/sidebar';
 import Pagination from '../layout/pagination';
 import Header from '../../components/layout/header';
 import Footer from '../../components/layout/footer';
+import Config from '../../services/config';
+import CustomSnackbar from '../../components/CustomSnackbar';
+
 const style = {
     minHeight: window.innerHeight    
 }
@@ -23,7 +26,11 @@ export default class SearchPage extends Component{
             searchConfig : decodedQry,
             result : [], 
             total : 0,
-            page : decodedQry.page || 1
+            page : decodedQry.page || 1,
+            snack: {
+                open: false,
+                message: ''
+            }
         }
 
         Elastic.count(this.state.searchConfig).then((count)=>{            
@@ -39,7 +46,8 @@ export default class SearchPage extends Component{
 
         this.handleFilterChange = this.handleFilterChange.bind(this);
         this.handleYearFilterChange = this.handleYearFilterChange.bind(this);
-        this.onChangePage = this.onChangePage.bind(this);        
+        this.onChangePage = this.onChangePage.bind(this);  
+        this.viewDetails = this.viewDetails.bind(this);
     }
 
     handleYearFilterChange(startYear, endYear){
@@ -48,7 +56,6 @@ export default class SearchPage extends Component{
     }
 
     handleFilterChange(e, filterKey= null){
-        console.log(e.target.value, "e value");
         this.setState({
             searchConfig: {
                 ...this.state.searchConfig,
@@ -71,10 +78,32 @@ export default class SearchPage extends Component{
         })
     }
 
-    caseDetails(e, caseId){
-        let qryStr = "/case/"+caseId;
-        this.props.history.push(qryStr);
-        //console.log(caseId, "caseId");
+    viewDetails(e, caseId){    
+        let isLoggedIn = localStorage.getItem(Config.LOCALSTORAGE_IS_LOGGED_USER);          
+        if(isLoggedIn){
+            let type = this.state.searchConfig.type ? this.state.searchConfig.type : 'case';
+            let qryStr = "/"+type+"/"+caseId;
+            this.props.history.push(qryStr);
+        }
+        else{
+            this.setState({
+                snack :{
+                    open :true,
+                    message : "Please login to view details"
+                }
+            })
+        }       
+    }
+
+
+    onSnackClose(){
+        console.log("onSnackClose called");
+        this.setState({
+            snack: {
+                open : false,
+                message: ''
+            }
+        })
     }
 
     paginate(type, event){
@@ -132,11 +161,13 @@ export default class SearchPage extends Component{
         if(this.state.result && this.state.result.length){
             ResultList = this.state.result.map((result,idx)=>{
                 let caseDetailsText = (result._source && result._source.description) ? result._source.description : '';
-                return <div className="caseResultDetail"><ListItem key={idx} className="caseTitle" ><Typography variant="title" className='listTitle'  onClick={(e)=>this.caseDetails(e, result._id)}>{(result._source && result._source.title) ? result._source.title : ''}</Typography></ListItem><ListItem key={idx+'desc'} className="caseDesc" ><Typography className={'caseExcerpt'} dangerouslySetInnerHTML={{__html: caseDetailsText}} /></ListItem></div>
+                return <div className="caseResultDetail"><ListItem key={idx} className="caseTitle" ><Typography variant="title" className='listTitle'  onClick={(e)=>this.viewDetails(e, result._id)}>{(result._source && result._source.title) ? result._source.title : ''}</Typography></ListItem><ListItem key={idx+'desc'} className="caseDesc" ><Typography className={'caseExcerpt'} dangerouslySetInnerHTML={{__html: caseDetailsText}} /></ListItem></div>
             })
         }        
 
-        return (<div><Header/>
+        return (<div>
+            <CustomSnackbar open={this.state.snack.open} onClose={(e)=>this.onSnackClose()} message={this.state.snack.message}/>
+            <Header/>
             <Grid container alignItems="stretch" justify="center" style={style}>
                 <SearchSidebar searchConfig={this.state.searchConfig} history={this.props.history} handleFilterChange={this.handleFilterChange} handleYearFilterChange={this.handleYearFilterChange}/>
                 <Grid item md={9} style={{paddingLeft: 10, paddingRight: 10}}>

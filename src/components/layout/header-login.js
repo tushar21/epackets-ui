@@ -7,18 +7,20 @@ const style = {
         margin: 10,
         color: '#fff',
         backgroundColor: '#9932CC',
-      }
+    }
 }
+
 export default class HeaderLogin extends Component {   
 
     constructor(props){
-        super();
-        console.log(props,"this.props.user inside header login");
+        super(props);     
+        console.log(this.props, "props in header login js ")   
         this.state = {
             anchorEl: null,
             shortName : props.user.first_name[0] + props.user.last_name[0]
-        };
+        };  
         
+        this.doLogout = this.doLogout.bind(this);
     }
 
     handleClick = event => {
@@ -30,13 +32,13 @@ export default class HeaderLogin extends Component {
     };
 
     doLogout(){
+        console.log(this.props.history, "this.props.history in dologout");
         localStorage.removeItem('LOGGEDIN_USER');
         this.props.history.push('/');
     }
 
     render() {
         const { anchorEl, shortName } = this.state;
-
         return (
             <div>
                 <Avatar style={style.purpleAvatar}>

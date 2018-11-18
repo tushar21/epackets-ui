@@ -1,5 +1,5 @@
 import HTTP from './http';
-
+const indexType = '/_doc/';
 export default {
     search : search,
     details : details,
@@ -7,7 +7,7 @@ export default {
 }
 
 async function details(id, type){
-    let response = await HTTP.get(type + '/type/'+id, true);
+    let response = await HTTP.get(type + indexType + id, true);
     return response;
 }
 

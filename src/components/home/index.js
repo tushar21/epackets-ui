@@ -8,22 +8,23 @@ import client1 from '../../assets/mslogo.jpg';
 import Header from '../../components/layout/header';
 import Footer from '../../components/layout/footer';
 
-
 const style = {
     'minHeight': (window.innerHeight - 80)
 }
+
 export default class Home extends Component{
 
     constructor(props){
         super(props);
-        console.log(props, "props inside home component");
     }
-    
+        
     render(){
         return (<div><Header position={'fixed'} history={this.props.history}/><Grid container>
                 <Grid container direction="column" alignItems="center" justify="center"  style={style} className={'homeBg'}>
                     <Grid item style={{marginBottom:20}}>
-                        <Typography variant="display1" gutterBottom className={'heading3'}>
+                        <Typography variant="display1" gutterBottom className={'heading3'} style={{
+                            color:'#ffffff'
+                        }}>
                             Search across millions of cases
                         </Typography>
                     </Grid>
@@ -68,7 +69,6 @@ export default class Home extends Component{
                     </Grid>    
                 </Grid>
                 
-
                 </Grid>
                 <Footer/>
                 </div>

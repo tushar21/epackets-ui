@@ -18,7 +18,7 @@ export default class SearchSidebar extends React.Component {
                 endYear : props.searchConfig.endYear || ''
             },
             cases: [],
-            statuses: [],
+            statute: [],
             briefs: [],
             lawyer: null,
             appelant: null, 
@@ -26,7 +26,7 @@ export default class SearchSidebar extends React.Component {
             judge: null,     
             category: null,
             court: null,
-            allTypes: ["cases", "statuses", "briefs"],
+            allTypes: ["cases", "statute", "briefs"],
             categories : ['CLC', 'PLD', 'PLC']
         }
     }
